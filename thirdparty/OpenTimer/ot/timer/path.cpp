@@ -423,7 +423,7 @@ std::vector<Path> Timer::_report_timing(std::vector<Endpoint*>&& epts, size_t K)
 
     std::vector<Path> paths; // Private vector for each thread
 
-    omp_set_num_threads(52);
+    omp_set_num_threads(8); // It was set to 52 and run on 104 cores with 128G RAM in the paper.
     #pragma omp parallel for schedule(dynamic)
     for (int i = 0; i < K; i++) {
       auto sfxt = _sfxt_cache(*epts[i]);
